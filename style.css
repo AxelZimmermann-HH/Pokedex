@@ -1,0 +1,293 @@
+@font-face {
+    font-family: 'RockSalt';
+    src: url('/fonts/RockSalt-Regular.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+header {
+    height: 150px;
+    background-color: rgb(225, 225, 225);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 80px 0px 80px;
+}
+
+header img {
+    height: 100px;
+}
+
+input {
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgb(218, 65, 103);
+    border-radius: 3px;
+    height: 35px;
+    width: 200px;
+}
+
+button {
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgb(218, 65, 103);
+    border-radius: 3px;
+    background-color: rgb(218, 65, 103);
+    color: white;
+    height: 42px;
+}
+
+button:hover {
+    background-color: rgb(222, 125, 149);
+    cursor: pointer;
+}
+
+#all-pokemons {
+    background-color: rgb(204, 204, 204);
+    padding: 30px 80px 0px 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pokemon-card {
+    width: 300px;
+    height: 400px;
+    background-color: rgb(144, 144, 144);
+    border-radius: 15px;
+    box-shadow: 0px 0px 31px -1px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.pokemon-card:hover {
+    transform: scale(1.1);
+  }
+  
+  .pokemon-card .img-bg {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .pokemon-card:hover .img-bg {
+    transform: scale(1.1);
+  }
+  
+  .pokemon-card .img-bg img {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .pokemon-card:hover .img-bg img {
+    transform: scale(1.3);
+  }
+
+.pokemon-card img {
+    width: 200px;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+}
+
+.img-bg {
+    width: 240px;
+    height: 220px;
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    border-radius: 30px;
+    border: 3px solid white;
+    box-shadow: 0px 0px 31px -1px rgba(0,0,0,0.4);
+
+}
+
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    font-size: 25px;
+    width: 250px;
+    padding: 0px 20px 0px 20px;
+}
+
+.pokeName {
+    font-family: 'RockSalt', sans-serif;
+    color: white;
+}
+
+.types {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.types img {
+    height: 60px;
+    width: 60px;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); /* Fügt einen Schatten hinzu */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.types img:hover {
+    transform: scale(1.1); /* Leichte Vergrößerung beim Hover */
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7)); /* Intensiviert den Schatten beim Hover */
+  }
+
+
+
+  .layer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 800;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.innerLayer {
+    width: 800px;
+    overflow: hidden;
+    border-radius: 30px;
+    box-shadow: 0px 0px 31px -1px rgba(0,0,0,0.4);
+    position: relative;
+    background-color: white;
+}
+
+.container1 {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    background-color: rgb(144, 144, 144);
+    z-index: 1;
+}
+
+.container2 {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    z-index: 3;
+}
+
+.container2::before {
+    content: '';
+    position: absolute;
+    top: -185px; /* Position anpassen, um die Ecke zu verbergen */
+    left: -20px; /* Position anpassen */
+    width: 140%; /* Breiter machen, um die Kante besser zu decken */
+    height: 400px; /* Höhe erhöhen, um die Überlappung zu verstärken */
+    border-radius: 50% 50% 0 0;
+    transform: rotate(-4deg);
+    z-index: 2; /* Über container1 und unter container2 */
+}
+
+.layer-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: 70px !important;
+    z-index: 4; /* Höchster z-index, um sicherzustellen, dass es über allem liegt */
+    position: relative;
+}
+
+.layer-header img {
+    height: 50px;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.layer-main-img {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 4; /* Höchster z-index, um sicherzustellen, dass es über allem liegt */
+    padding-right: 50px;
+}
+
+.layer-main-img img {
+    height: 400px;
+    margin-top: -450px;
+    margin-bottom: 50px;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5)); /* Fügt einen Schatten hinzu */
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding-left: 10px;
+    width: 780px;
+    z-index: 5;
+    position: relative; /* Sicherstellen, dass der z-index gilt */
+}
+
+.button-nav {
+    flex: 1; /* Jeder Button nimmt den gleichen Raum ein */
+    padding: 8px 0; /* Vertikales Padding für bessere Klickfläche */
+    font-size: 25px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px; /* Entfernt die Abrundung, um den ganzen Raum zu nutzen */
+    background-color: #fff;
+    color: lightcoral;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* Zentriert den Text */
+}
+
+.button-nav:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#info-content {
+    z-index: 5;
+    position: relative;
+    width: 700px;
+    height: 400px;
+    border: 3px solid white;
+    border-radius: 15px;
+    margin-left: 50px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    font-size: 25px;
+    color: white;
+}
+th, td {
+    width: 250px; 
+    height: 80px; 
+}
+
+.d-none {
+    display: none;
+}
+
+
+
+
+
+
