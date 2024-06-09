@@ -19,10 +19,11 @@ const typeColors = {
   normal: "#A8A878",
 };
 
-const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0";
+const BASE_URL = "https://pokeapi.co/api/v2/";
 
 let pokemons = [];
 let detailedInfo = [];
+let evo = [];
 
 async function init() {
   await fetchPokemons();
@@ -30,7 +31,16 @@ async function init() {
 
 // Holt Basic Infos und rendert
 async function fetchPokemons() {
-  let response = await fetch(BASE_URL);
+  let response = await fetch(BASE_URL + "pokemon?limit=20&offset=0)");
+  let responseAsJson = await response.json();
+  pokemons = responseAsJson; // Speichern der Daten in globaler Variable
+  console.log(pokemons);
+  showPokemonCards(pokemons); // Funktion zur Erstellung der Tabelle, greift auf JSON zu
+  console.log("check");
+}
+
+async function fetchEvo() {
+  let response = await fetch(BASE_URL + "pokemon?limit=20&offset=0)");
   let responseAsJson = await response.json();
   pokemons = responseAsJson; // Speichern der Daten in globaler Variable
   console.log(pokemons);
@@ -44,6 +54,8 @@ async function fetchDetails(url) {
   console.log(detailedInfo);
   return detailedInfo;
 }
+
+
 
 async function showPokemonCards(data) {
   let content = document.getElementById("all-pokemons");
@@ -72,14 +84,14 @@ async function showPokemonCards(data) {
 }
 
 
-function showPokemonLayer(i, name, number, imageUrl, height, weight, baseExperience, abilities, bgColor) {
+function showPokemonLayer(i, name, number, imageUrl, height, weight, baseExperience, abilities, bgColor, stat1, stat2, stat3, stat4, stat5, stat6) {
   let abilitiesArray = abilities.split(', ');
   let abilitiesHTML = abilitiesArray.join(', ');
 
   let content = document.getElementById('layer-pokemon');
   content.classList.remove('d-none');
   content.innerHTML = '';
-  content.innerHTML += createLayerHTML(name, number, imageUrl, height, weight, baseExperience, abilitiesHTML, bgColor);
+  content.innerHTML += createLayerHTML(name, number, imageUrl, height, weight, baseExperience, abilitiesHTML, bgColor, stat1, stat2, stat3, stat4, stat5, stat6);
   showMainInfos(height, weight, baseExperience, abilities);
 }
 
@@ -96,7 +108,7 @@ function showMainInfos(height, weight, baseExperience, abilities) {
 }
 
 
-function showStats() {
+function showStats(bgColor, stat1, stat2, stat3, stat4, stat5, stat6) {
   let content = document.getElementById('info-content');
 
   document.getElementById('button1').classList.remove('active');
@@ -104,7 +116,7 @@ function showStats() {
   document.getElementById('button3').classList.remove('active');
 
   content.innerHTML = '';
-  content.innerHTML += createStats();
+  content.innerHTML += createStats(bgColor, stat1, stat2, stat3, stat4, stat5, stat6);
   
 }
 
@@ -141,7 +153,6 @@ function getTypeBackground(detailedInfo) {
     }
   
     let num = parseInt(col, 16);
-  
     let r = (num >> 16) + amt;
   
     if (r > 255) r = 255;

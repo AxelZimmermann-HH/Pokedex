@@ -40,7 +40,7 @@ function createTypeIcons(typesHTML, detailedInfo, j) {
     return `
     <div class="pokemon-card" id="card${i}" onclick="showPokemonLayer(${i}, '${pokemon.name}', '${detailedInfo.id}',
       '${detailedInfo.sprites.other.home.front_default}', ${detailedInfo.height}, ${detailedInfo.weight}, 
-      ${detailedInfo.base_experience}, '${abilities}', '${bgColor}')">
+      ${detailedInfo.base_experience}, '${abilities}', '${bgColor}', '${detailedInfo.stats[0].base_stat}', '${detailedInfo.stats[1].base_stat}', '${detailedInfo.stats[2].base_stat}', '${detailedInfo.stats[3].base_stat}', '${detailedInfo.stats[4].base_stat}', '${detailedInfo.stats[5].base_stat}')">
           <div class="card-header">
               <p>#${i + 1}</p>
               <p class="pokeName">${pokemon.name}</p>
@@ -56,7 +56,9 @@ function createTypeIcons(typesHTML, detailedInfo, j) {
   }
   
 
-  function createLayerHTML(name, number, imageUrl, height, weight, baseExperience, abilities, bgColor) {
+  function createLayerHTML(
+    name, number, imageUrl, height, weight, baseExperience, abilities, bgColor, 
+    stat1, stat2, stat3, stat4, stat5, stat6) {
     // Dynamisches Hinzufügen des CSS für die Pseudo-Klasse
     addDynamicPseudoClassStyle('.container2::before', `background-color: ${bgColor};`);
   
@@ -80,7 +82,7 @@ function createTypeIcons(typesHTML, detailedInfo, j) {
         </div>
           <div class="navbar">
               <button class="button-nav" id="button1" onclick="showMainInfos('${height}', '${weight}', '${baseExperience}', '${abilities}')">MAIN</button>
-              <button class="button-nav" id="button2" onclick="showStats()">STATS</button>
+              <button class="button-nav" id="button2" onclick="showStats('${bgColor}', '${stat1}', '${stat2}', '${stat3}', '${stat4}', '${stat5}', '${stat6}')">STATS</button>
               <button class="button-nav" id="button3">EVO CHAIN</button>
           </div>
           <div id="info-content">
@@ -114,49 +116,49 @@ function createTypeIcons(typesHTML, detailedInfo, j) {
 
   }
   
-  function createStats(height, weight, baseExperience, abilities) {
+  function createStats(bgColor, stat1, stat2, stat3, stat4, stat5, stat6) {
     return `
     <div>
     <div class="stat-container">
     <div class="stat-name">HP:</div>
     <div class="stat-bar">
-        <div class="stat-bar-inner" style="--value: 45%; width: 45%;"></div>
-        <div class="stat-value">45</div>
+    <div class="stat-bar-inner" style="--value: calc(${stat1} / 255 * 100%); width: calc(${stat1} / 255 * 100%); background-color: ${bgColor};"></div>
+        <div class="stat-value">${stat1}</div>
     </div>
 </div>
 <div class="stat-container">
     <div class="stat-name">Attack:</div>
     <div class="stat-bar">
-        <div class="stat-bar-inner" style="--value: 49%; width: 49%;"></div>
-        <div class="stat-value">49</div>
+    <div class="stat-bar-inner" style="--value: calc(${stat2} / 255 * 100%); width: calc(${stat2} / 255 * 100%); background-color: ${bgColor};"></div>
+        <div class="stat-value">${stat2}</div>
     </div>
 </div>
 <div class="stat-container">
     <div class="stat-name">Defense:</div>
     <div class="stat-bar">
-        <div class="stat-bar-inner" style="--value: 49%; width: 49%;"></div>
-        <div class="stat-value">49</div>
+    <div class="stat-bar-inner" style="--value: calc(${stat3} / 255 * 100%); width: calc(${stat3} / 255 * 100%); background-color: ${bgColor};"></div>
+        <div class="stat-value">${stat3}</div>
     </div>
 </div>
 <div class="stat-container">
     <div class="stat-name">Special Attack:</div>
     <div class="stat-bar">
-        <div class="stat-bar-inner" style="--value: 65%; width: 65%;"></div>
-        <div class="stat-value">65</div>
+    <div class="stat-bar-inner" style="--value: calc(${stat4} / 255 * 100%); width: calc(${stat4} / 255 * 100%); background-color: ${bgColor};"></div>
+        <div class="stat-value">${stat4}</div>
     </div>
 </div>
 <div class="stat-container">
     <div class="stat-name">Special Defence:</div>
     <div class="stat-bar">
-        <div class="stat-bar-inner" style="--value: 65%; width: 65%;"></div>
-        <div class="stat-value">65</div>
+    <div class="stat-bar-inner" style="--value: calc(${stat5} / 255 * 100%); width: calc(${stat5} / 255 * 100%); background-color: ${bgColor};"></div>
+        <div class="stat-value">${stat5}</div>
     </div>
 </div>
 <div class="stat-container">
     <div class="stat-name">Speed:</div>
     <div class="stat-bar">
-        <div class="stat-bar-inner" style="--value: 45%; width: 45%;"></div>
-        <div class="stat-value">45</div>
+    <div class="stat-bar-inner" style="--value: calc(${stat6} / 255 * 100%); width: calc(${stat6} / 255 * 100%); background-color: ${bgColor};"></div>
+        <div class="stat-value">${stat6}</div>
     </div>
 </div>
 </div>

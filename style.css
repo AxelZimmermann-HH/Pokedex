@@ -326,9 +326,10 @@ th, td {
     margin: 10px 0;
     display: flex;
     align-items: center;
+    width: 400px;
 }
 .stat-name {
-    width: 150px;
+    width: 200px;
 }
 .stat-bar {
     width: 100%;
@@ -339,13 +340,13 @@ th, td {
     position: relative;
 }
 .stat-bar-inner {
-    height: 20px;
-    width: 0;
-    background-color: #4caf50;
-    text-align: right;
-    padding-right: 5px;
-    box-sizing: border-box;
-    border-radius: 5px 0 0 5px;
+        height: 20px;
+        width: 0;
+        text-align: right;
+        padding-right: 5px;
+        box-sizing: border-box;
+        border-radius: 0px 5px 5px 0px;
+        animation: grow 1s forwards;
 }
 .stat-value {
     position: absolute;
@@ -362,9 +363,8 @@ th, td {
         width: var(--value);
     }
 }
-.stat-bar-inner {
-    animation: grow 2s forwards;
-}
+
+
 
 
 
