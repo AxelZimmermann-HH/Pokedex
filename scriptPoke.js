@@ -72,14 +72,40 @@ async function showPokemonCards(data) {
 }
 
 
-function showPokemonLayer(i, name, imageUrl, height, weight, baseExperience, abilities, bgColor) {
+function showPokemonLayer(i, name, number, imageUrl, height, weight, baseExperience, abilities, bgColor) {
   let abilitiesArray = abilities.split(', ');
   let abilitiesHTML = abilitiesArray.join(', ');
 
   let content = document.getElementById('layer-pokemon');
   content.classList.remove('d-none');
   content.innerHTML = '';
-  content.innerHTML += createLayerHTML(name, imageUrl, height, weight, baseExperience, abilitiesHTML, bgColor);
+  content.innerHTML += createLayerHTML(name, number, imageUrl, height, weight, baseExperience, abilitiesHTML, bgColor);
+  showMainInfos(height, weight, baseExperience, abilities);
+}
+
+
+function showMainInfos(height, weight, baseExperience, abilities) {
+  let content = document.getElementById('info-content');
+  
+  document.getElementById('button1').classList.add('active');
+  document.getElementById('button2').classList.remove('active');
+  document.getElementById('button3').classList.remove('active');
+
+  content.innerHTML = '';
+  content.innerHTML += createMainInfos(height, weight, baseExperience, abilities);
+}
+
+
+function showStats() {
+  let content = document.getElementById('info-content');
+
+  document.getElementById('button1').classList.remove('active');
+  document.getElementById('button2').classList.add('active');
+  document.getElementById('button3').classList.remove('active');
+
+  content.innerHTML = '';
+  content.innerHTML += createStats();
+  
 }
 
 

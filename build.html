@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex
-    </title>
+    <title>Pokedex</title>
     <script src="scriptPoke.js"></script>
+    <script src="getHTML.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="init()">
@@ -16,18 +16,9 @@
             <button id="b1">Search</button>
         </div>
     </header>
-    <div id="all-pokemons">
-        <div class="pokemon-card">
-            <div class="card-header">
-                <p>#1</p>
-                <p>Bulbasaur</p>
-            </div>
-            <div class="img-bg">
-                <img id="bild" src="/img/test.jpeg" alt="">
-            </div>
-            
-            <p id="name">Pokemon1</p>
-        </div>
-    </div>
+    <div id="all-pokemons"></div>
+
+    <!-- Layer Pokemon -->
+    <div id="layer-pokemon" class="layer d-none"></div>
 </body>
 </html>
