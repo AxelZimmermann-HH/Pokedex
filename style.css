@@ -1,11 +1,23 @@
 @font-face {
     font-family: 'RockSalt';
-    src: url('/fonts/RockSalt-Regular.ttf') format('truetype');
+    src: url('./fonts/RockSalt-Regular.ttf') format('truetype');
 }
 
 body {
     margin: 0;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.header-container {
+    max-width: 1920px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 80px 0px 80px;
+    box-sizing: border-box;
 }
 
 p {
@@ -17,9 +29,8 @@ header {
     height: 150px;
     background-color: rgb(225, 225, 225);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0px 80px 0px 80px;
+    
 }
 
 header img {
@@ -50,13 +61,36 @@ button:hover {
     cursor: pointer;
 }
 
-#all-pokemons {
+.all-pokemons-area {
     background-color: rgb(204, 204, 204);
     padding: 30px 80px 0px 80px;
     display: flex;
+    justify-content: center;
+}
+
+#all-pokemons {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 1800px;
     gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.more-pokemons {
+    background-color: rgb(204, 204, 204);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+}
+
+.more-pokemons button {
+    font-size: 30px;
+    height: 70px;
+    width: 320px;
+    border-radius: 10px;
 }
 
 .pokemon-card {
@@ -127,6 +161,10 @@ button:hover {
     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.9));
 }
 
+.card-number {
+    font-size: 15px;
+}
+
 .types {
     display: flex;
     justify-content: center;
@@ -144,18 +182,18 @@ button:hover {
 .types img:hover {
     transform: scale(1.1); /* Leichte Vergrößerung beim Hover */
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7)); /* Intensiviert den Schatten beim Hover */
-  }
+}
 
 
 
-  .layer {
+.layer {
     position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
     z-index: 800;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -165,7 +203,7 @@ button:hover {
     width: 500px;
     overflow: hidden;
     border-radius: 30px;
-    box-shadow: 0px 0px 31px -1px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 31px -1px rgba(0,0,0,0.9);
     position: relative;
     background-color: white;
 }
@@ -219,12 +257,12 @@ button:hover {
 } 
 
 .layer-number {
-    font-size: 80px;
+    font-size: 50px;
     padding-left: 40px;
     position: relative;
     z-index: 4;
-    margin-top: -250px;
-    margin-bottom: 50px;
+    margin-top: -210px;
+    margin-bottom: 85px;
     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
 }
 
@@ -281,6 +319,13 @@ button:hover {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+.button-nav:focus {
+    background-color: rgb(144, 144, 144); /* Farbe für den aktiven Button */
+    color: #fff; /* Textfarbe für den aktiven Button */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Original Box-Schatten */
+    outline: none; /* Entfernt den Standard-Fokus-Rahmen */
+}
+
 .active {
     background-color: rgb(144, 144, 144); /* Farbe für den aktiven Button */
     color: #fff; /* Textfarbe für den aktiven Button */
@@ -307,6 +352,8 @@ table {
     font-size: 20px;
     color: white;
     border-collapse: collapse;
+    font-family: RockSalt, sans-serif;
+    font-size: 15px;
 }
 th, td {
     width: 200px; 
@@ -330,6 +377,9 @@ th, td {
 }
 .stat-name {
     width: 200px;
+    font-family: RockSalt, sans-serif;
+    font-size: 12px;
+    color: white;
 }
 .stat-bar {
     width: 100%;
@@ -354,6 +404,8 @@ th, td {
     top: 0;
     height: 20px;
     line-height: 20px;
+    font-family: RockSalt, sans-serif;
+    font-size: 9px;
 }
 @keyframes grow {
     from {
@@ -364,8 +416,51 @@ th, td {
     }
 }
 
+.evo-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'RockSalt', sans-serif;
+    color: white;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5))
+}
+
+.evo-images {
+    display: flex;
+    align-items: center;
+}
+
+.evo-images img {
+    height: 120px;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+}
+
+.arrow {
+    height: 40px !important;
+    padding-top: 30px;
+}
 
 
+.loading {
+    text-align: center;
+    color: #fff;
+    font-size: 2em;
+  }
+  
+.loading img {
+    display: block;
+    height: 80px;
+    margin: 0 auto 20px; /* Zentriert das Bild und fügt Abstand zum Text hinzu */
+    animation: spin 2s linear infinite;
+}
 
+@keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
 

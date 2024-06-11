@@ -4,21 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
-    <script src="scriptPoke.js"></script>
+    <script src="script.js"></script>
     <script src="getHTML.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body onload="init()">
     <header>
-        <img src="/img/logo.png" alt="">
+        <div class="header-container">
+        <img src="./img/logo.png" alt="">
         <div>
             <input type="text">
             <button id="b1">Search</button>
         </div>
+    </div>
     </header>
-    <div id="all-pokemons"></div>
+    <div class="all-pokemons-area">
+    <div id="all-pokemons" class="container"></div>
+    </div>
+    <div class="more-pokemons">
+        <button onclick="loadMorePokemons()">Load more pokemon</button>
+    </div>
 
     <!-- Layer Pokemon -->
     <div id="layer-pokemon" class="layer d-none"></div>
+
+    <!-- Layer Loading -->
+    <div id="loading" class="layer d-none">
+    <div class="loading">
+        <img src="./img/ball.png" alt="">
+        Loading...
+    </div>    
+    </div>
 </body>
 </html>
