@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <title>Pokedex</title>
-    <script src="script.js"></script>
-    <script src="getHTML.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body onload="init()">
+    
+    <script src="data-requests.js"></script>
+    <script src="main-functions.js"></script>
+    <script src="support-functions.js"></script>
+    <script src="return-HTML.js"></script>
+    
+    <link rel="stylesheet" href="style.css" />
+
+  </head>
+  
+  <body onload="init()">
+    
     <header>
-        <div class="header-container">
-        <img src="./img/logo.png" alt="">
+      <div class="header-container">
+        <img src="./img/logo.png" alt="" onclick="init()" />
         <div>
-            <input type="text">
-            <button id="b1">Search</button>
+          <input id="search" type="text" onkeyup="checkSearch(event)" />
+          <button onclick="filterPokemons()" id="search-button">Find Pokémon</button>
         </div>
-    </div>
+      </div>
     </header>
+    
     <div class="all-pokemons-area">
-    <div id="all-pokemons" class="container"></div>
+      <div id="all-pokemons" class="container"></div>
     </div>
+    
     <div class="more-pokemons">
-        <button onclick="loadMorePokemons()">Load more pokemon</button>
+      <button onclick="loadMorePokemons()">Load more pokemon</button>
     </div>
 
     <!-- Layer Pokemon -->
@@ -30,10 +41,11 @@
 
     <!-- Layer Loading -->
     <div id="loading" class="layer d-none">
-    <div class="loading">
-        <img src="./img/ball.png" alt="">
+      <div class="loading">
+        <img src="./img/ball.png" alt="" />
         Loading...
-    </div>    
+      </div>
     </div>
+  
 </body>
 </html>
