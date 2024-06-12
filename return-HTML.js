@@ -41,36 +41,37 @@ function createCardHTML(i, pokemon, bgColor, detailedInfo, typesHTML) {
 function createLayerHTML(name, number, imageUrl, imageUrl2, height, weight, baseExperience, abilitiesHTML, bgColor, stat1, stat2, stat3, stat4, stat5, stat6, pokemonId) {  
   addDynamicPseudoClassStyle('.container2::before', `background-color: ${bgColor};`);
   
-  return `<div class="innerLayer">
-    <div class="container1">
-      <div class="layer-header">
-        <p class="pokeName">${name}</p>
-        <p id="previous" class="pokeName" onclick="previousPokemon()"><</p>
-        <p id="next" class="pokeName" onclick="nextPokemon()">></p>
-        <div class="close-layer" onclick="closePokemonLayer()">
-          <img class="icon" src="./img/icons/xmark-white.svg" alt="">
+  return `
+  <div class="layer-container">  
+    <p id="previous" class="pokeName-layer" onclick="previousPokemon()"><</p>
+    <div class="innerLayer">
+      <div class="container1">
+        <div class="layer-header">
+          <p class="pokeName-layer">${name}</p>
+          
+          <div class="close-layer" onclick="closePokemonLayer()">
+            <img class="icon" src="./img/icons/xmark-white.svg" alt="">
+          </div>
         </div>
       </div>
-    </div>
-    <div class="container2" style="background-color: ${bgColor};">
-      <div class="layer-main-img">
-        <img src="${imageUrl}" alt="${name}">
-      </div>
-      <div class="layer-number pokeName">
-        <p>#${number}</p>
-      </div>
-      <div class="navbar">
-        <button class="button-nav" id="button1" onclick="showMainInfos('${height}', '${weight}', '${baseExperience}', '${abilitiesHTML}')">MAIN</button>
-        <button class="button-nav" id="button2" onclick="showStats('${bgColor}', '${stat1}', '${stat2}', '${stat3}', '${stat4}', '${stat5}', '${stat6}')">STATS</button>
-        <button class="button-nav" id="button3" onclick="showEvolutionImages(${pokemonId})">EVO CHAIN</button>
-      </div>
-      <div id="info-content"></div>
-      <div id="evolution-chain">
-        <h3>Evolution Chain</h3>
-        <!-- Evolution chain images will be inserted here -->
+      <div class="container2" style="background-color: ${bgColor};">
+        <div class="layer-main-img">
+          <img src="${imageUrl}" alt="${name}">
+        </div>
+        <div class="layer-number pokeName-layer">
+          <p>#${number}</p>
+        </div>
+        <div class="navbar">
+          <button class="button-nav" id="button1" onclick="showMainInfos('${height}', '${weight}', '${baseExperience}', '${abilitiesHTML}')">MAIN</button>
+          <button class="button-nav" id="button2" onclick="showStats('${bgColor}', '${stat1}', '${stat2}', '${stat3}', '${stat4}', '${stat5}', '${stat6}')">STATS</button>
+          <button class="button-nav" id="button3" onclick="showEvolutionImages(${pokemonId})">EVO CHAIN</button>
+        </div>
+        <div id="info-content"></div>
       </div>
     </div>
-  </div>`;
+    <p id="next" class="pokeName-layer" onclick="nextPokemon()">></p>
+  </div>  
+    `;
 }
   
   
@@ -96,56 +97,26 @@ function createMainInfos(height, weight, baseExperience, abilities) {
     </table>
     `
 }
-  
 
 
-function createStats(bgColor, stat1, stat2, stat3, stat4, stat5, stat6) {
-  return `
-    <div>
+
+function createStats(bgColor, ...stats) {
+  const statNames = ["HP", "Attack", "Defense", "Special Attack", "Special Defence", "Speed"];
+  let statsHTML = '';
+
+  for (let i = 0; i < stats.length; i++) {
+    statsHTML += `
       <div class="stat-container">
-        <div class="stat-name">HP:</div>
+        <div class="stat-name">${statNames[i]}:</div>
         <div class="stat-bar">
-          <div class="stat-bar-inner" style="--value: calc(${stat1} / 255 * 100%); width: calc(${stat1} / 255 * 100%); background-color: ${bgColor};"></div>
-          <div class="stat-value">${stat1}</div>
+          <div class="stat-bar-inner" style="--value: calc(${stats[i]} / 255 * 100%); width: calc(${stats[i]} / 255 * 100%); background-color: ${bgColor};"></div>
+          <div class="stat-value">${stats[i]}</div>
         </div>
       </div>
-      <div class="stat-container">
-        <div class="stat-name">Attack:</div>
-        <div class="stat-bar">
-          <div class="stat-bar-inner" style="--value: calc(${stat2} / 255 * 100%); width: calc(${stat2} / 255 * 100%); background-color: ${bgColor};"></div>
-          <div class="stat-value">${stat2}</div>
-        </div>
-      </div>
-      <div class="stat-container">
-        <div class="stat-name">Defense:</div>
-        <div class="stat-bar">
-          <div class="stat-bar-inner" style="--value: calc(${stat3} / 255 * 100%); width: calc(${stat3} / 255 * 100%); background-color: ${bgColor};"></div>
-          <div class="stat-value">${stat3}</div>
-        </div>
-      </div>
-      <div class="stat-container">
-        <div class="stat-name">Special Attack:</div>
-        <div class="stat-bar">
-          <div class="stat-bar-inner" style="--value: calc(${stat4} / 255 * 100%); width: calc(${stat4} / 255 * 100%); background-color: ${bgColor};"></div>
-          <div class="stat-value">${stat4}</div>
-        </div>
-      </div>
-      <div class="stat-container">
-        <div class="stat-name">Special Defence:</div>
-        <div class="stat-bar">
-          <div class="stat-bar-inner" style="--value: calc(${stat5} / 255 * 100%); width: calc(${stat5} / 255 * 100%); background-color: ${bgColor};"></div>
-          <div class="stat-value">${stat5}</div>
-        </div>
-      </div>
-      <div class="stat-container">
-        <div class="stat-name">Speed:</div>
-        <div class="stat-bar">
-          <div class="stat-bar-inner" style="--value: calc(${stat6} / 255 * 100%); width: calc(${stat6} / 255 * 100%); background-color: ${bgColor};"></div>
-          <div class="stat-value">${stat6}</div>
-        </div>
-      </div>
-    </div>
-    `
+    `;
+  }
+
+  return `<div>${statsHTML}</div>`;
 }
 
 
