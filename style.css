@@ -10,6 +10,9 @@
 body {
     margin: 0;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 p {
@@ -24,12 +27,14 @@ button {
     border-radius: 3px;
     background-color: rgb(218, 65, 103);
     color: white;
-    height: 42px;
+    height: 43px;
+    cursor:pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-    background-color: rgb(222, 125, 149);
-    cursor: pointer;
+    transform: scale(0.9);
+    filter: drop-shadow(0 0 5px rgba(218, 65, 103, 0.9));
 }
 
 /* =============================
@@ -52,19 +57,45 @@ header {
     background-color: rgb(225, 225, 225);
     display: flex;
     align-items: center;   
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 998;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 header img {
     height: 100px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+header img:hover {
+    transform: scale(0.95);
+    filter: drop-shadow(0 0 5px rgba(218, 65, 103, 0.9));
+}
+
+.search-area {
+    display: flex;
+}
+
+.search-area button {
+    border-radius: 0px 3px 3px 0px;
 }
 
 input {
     border-width: 3px;
     border-style: solid;
     border-color: rgb(218, 65, 103);
-    border-radius: 3px;
+    border-radius: 3px 0px 0px 3px;
     height: 35px;
     width: 200px;
+    font-family: RockSalt, sans-serif;
+    padding-left: 10px;    
+}
+
+input:focus {
+    outline: none;
 }
 
 .all-pokemons-area {
@@ -72,6 +103,8 @@ input {
     padding: 30px 80px 0px 80px;
     display: flex;
     justify-content: center;
+    margin-top: 150px;
+    flex: 1;
 }
 
 #all-pokemons {
@@ -82,6 +115,7 @@ input {
     gap: 20px;
     width: 100%;
     box-sizing: border-box;
+    
 }
 
 .more-pokemons {
@@ -90,6 +124,7 @@ input {
     justify-content: center;
     align-items: center;
     height: 120px;
+    flex-shrink: 0;;
 }
 
 .more-pokemons button {
@@ -207,6 +242,62 @@ input {
     justify-content: center;
     align-items: center;
 }
+
+.layer-transparent {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 800;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-right: 30px;
+    padding-bottom: 30px;
+}
+
+
+#search-error {
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgb(218, 65, 103);
+    border-radius: 3px 3px 3px 3px;
+    height: 35px;
+    font-family: RockSalt, sans-serif;
+    padding-left: 10px;  
+    padding-right: 10px;
+    margin-right: 20px;
+}
+
+
+.bounce {
+    animation: bounce 1s ease forwards;
+}
+@keyframes bounce {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.arrow-up {
+    height: 120px;
+    cursor: pointer;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.9));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.arrow-up:hover {
+    transform: scale(0.9);
+    filter: drop-shadow(0 0 5px rgba(218, 65, 103, 0.9));
+}
+
+
 
 .layer-container {
     display: flex;

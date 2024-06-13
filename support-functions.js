@@ -104,3 +104,45 @@ function formatPokemonDetails(pokemon, pokemonDetails) {
       pokemonId: pokemonDetails.id,
     };
   }
+
+
+
+function buttonAllPokemon() {
+    document.getElementById('load-more').classList.add('d-none');
+    document.getElementById('get-back').classList.remove('d-none');
+}
+
+
+function buttonLoadMore() {
+    document.getElementById('load-more').classList.remove('d-none');
+    document.getElementById('get-back').classList.add('d-none');
+}
+
+
+
+document.addEventListener('scroll', function() {
+    let loadingLayer = document.getElementById('arrowUp');
+    if (window.scrollY > 0) {
+        loadingLayer.classList.remove('d-none');
+    } else {
+        loadingLayer.classList.add('d-none');
+    }
+});
+
+
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+
+function showSearchError() {
+    document.getElementById('search-error').classList.remove('d-none');
+    document.getElementById('search-error').classList.add('bounce');
+
+    setTimeout(function() {
+        document.getElementById('search-error').classList.add('d-none');
+        document.getElementById('search-error').classList.remove('bounce');
+    }, 2000);
+}

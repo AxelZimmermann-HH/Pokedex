@@ -1,8 +1,8 @@
-async function fetchPokemons(offset) {
+async function fetchNextPokemons(offset) {
   showLoading();
   let response = await fetch(BASE_URL + `pokemon?offset=${offset}&limit=50`);
   let responseAsJson = await response.json();
-  currentPokemons = responseAsJson;
+  nextPokemons = responseAsJson;
   hideLoading();
 }
 

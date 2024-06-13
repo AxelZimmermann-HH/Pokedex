@@ -7,7 +7,7 @@ const typeColors = {fire: "#F08030", water: "#6890F0", grass: "#78C850", electri
 
 const BASE_URL = "https://pokeapi.co/api/v2/";
 
-let currentPokemons = [];
+let nextPokemons = [];
 let currentPokemonInfos = [];
 let offset = 0;
 let currentIndex = 0;
@@ -16,17 +16,20 @@ let dataLoaded = false;
 
 
 async function init() {
-  await fetchPokemons();
-  await showPokemonCards(currentPokemons);
+  offset = 0;
+  await fetchNextPokemons();
+  let content = document.getElementById("all-pokemons");
+  content.innerHTML='';
+  await showPokemonCards(nextPokemons);
 }
 
 
 
-async function showPokemonCards(currentPokemons) {
+async function showPokemonCards(nextPokemons) {
   let content = document.getElementById("all-pokemons");
-  let results = currentPokemons.results;
+  let results = nextPokemons.results;
   showLoading();
-
+  
   for (let i = 0; i < results.length; i++) {
     let pokemon = results[i];
     let detailedInfo = await fetchPokemonDetails(pokemon.url);
@@ -42,13 +45,16 @@ async function showPokemonCards(currentPokemons) {
     pushCurrentPokemonData(pokemon, detailedInfo, abilities, bgColor);
     content.innerHTML += createCardHTML(i, pokemon, bgColor, detailedInfo, typesHTML);
   }
+  buttonLoadMore();
   hideLoading();
+  document.getElementById('layer-pokemon').classList.add('d-none');
 }
 
 
 
+
 function showPokemonLayer(i,name,number,imageUrl,imageUrl2,height,weight,
-  baseExperience,abilities,bgColor,stat1,stat2,stat3,stat4,stat5,stat6,pokemonId) {
+  baseExperience,abilities,bgColor,stat1,stat2,stat3,stat4,stat5,stat6,pokemonId, fromSearch = false) {
   
   currentIndex = number - 1; 
 
@@ -64,6 +70,12 @@ function showPokemonLayer(i,name,number,imageUrl,imageUrl2,height,weight,
   
   showMainInfos(height, weight, baseExperience, abilities);
   hideArrows();
+  
+  if (fromSearch) {
+    document.getElementById('previous').classList.add('d-none');
+    document.getElementById('next').classList.add('d-none');
+    console.log("Dieses Pokémon stammt aus der Suche");
+  }
 }
 
 
@@ -156,6 +168,9 @@ function nextPokemon() {
 
 
 
+
+
+
 function previousPokemon() {
   if (currentIndex > 0) {
     currentIndex--;
@@ -173,8 +188,8 @@ function previousPokemon() {
 async function loadMorePokemons() {
   offset += 50;
   console.log(offset)
-  await fetchPokemons(offset)
-  await showPokemonCards(currentPokemons);
+  await fetchNextPokemons(offset)
+  await showPokemonCards(nextPokemons);
 }
 
 
@@ -191,7 +206,7 @@ async function filterPokemons() {
   let search = document.getElementById('search').value;
   
   if (search.length < 3) {
-    alert('Bitte mehr als 3 Zeichen eingeben');
+    showSearchError();
     return; // Beenden der Funktion, wenn die Eingabe weniger als 3 Zeichen hat
   }
   search = search.toLowerCase();
@@ -201,6 +216,7 @@ async function filterPokemons() {
   }
   let filteredPokemons = allPokemonInfos.filter(pokemon => pokemon.name.toLowerCase().includes(search));
   renderFilteredPokemons(filteredPokemons);
+  document.getElementById('search').value = '';
 }
 
 
@@ -225,7 +241,12 @@ function renderFilteredPokemons(filteredPokemons) {
                 { base_stat: pokemon.stat4 },{ base_stat: pokemon.stat5 },{ base_stat: pokemon.stat6 },],
         types: pokemon.types, 
       },
-      typesHTML
+      typesHTML,
+      true
     );
   }
+
+  buttonAllPokemon()
 }
+
+

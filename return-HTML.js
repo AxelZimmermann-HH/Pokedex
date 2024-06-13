@@ -9,7 +9,7 @@ function createTypeIcons(typesHTML, detailedInfo, j) {
   
 
 
-function createCardHTML(i, pokemon, bgColor, detailedInfo, typesHTML) {
+function createCardHTML(i, pokemon, bgColor, detailedInfo, typesHTML, fromSearch = false) {
   let abilities = detailedInfo.abilities.map(a => a.ability.name).join(', ');
 
   let lighterColor = lightenDarkenColor(bgColor, 40);
@@ -21,7 +21,7 @@ function createCardHTML(i, pokemon, bgColor, detailedInfo, typesHTML) {
       ${detailedInfo.height}, ${detailedInfo.weight}, ${detailedInfo.base_experience}, '${abilities}', '${bgColor}', '${detailedInfo.stats[0].base_stat}', 
       '${detailedInfo.stats[1].base_stat}', '${detailedInfo.stats[2].base_stat}', 
       '${detailedInfo.stats[3].base_stat}', '${detailedInfo.stats[4].base_stat}', 
-      '${detailedInfo.stats[5].base_stat}', ${detailedInfo.id})">
+      '${detailedInfo.stats[5].base_stat}', ${detailedInfo.id}, ${fromSearch})">
           <div class="card-header">
               <p class="pokeName card-number">#${detailedInfo.id}</p>
               <p class="pokeName">${pokemon.name}</p>

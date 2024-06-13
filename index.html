@@ -21,8 +21,10 @@
     <header>
       <div class="header-container">
         <img src="./img/logo.png" alt="" onclick="init()" />
-        <div>
-          <input id="search" type="text" onkeyup="checkSearch(event)" />
+        
+        <div class="search-area">
+            <div id="search-error" class="d-none">Please enter 3 letters at least!</div>
+          <input id="search" type="text" placeholder="Enter here..." onkeyup="checkSearch(event)" />
           <button onclick="filterPokemons()" id="search-button">Find Pokémon</button>
         </div>
       </div>
@@ -33,7 +35,8 @@
     </div>
     
     <div class="more-pokemons">
-      <button onclick="loadMorePokemons()">Load more pokemon</button>
+      <button id="load-more" class="" onclick="loadMorePokemons()">Load more pokemon</button>
+      <button id="get-back" class="d-none" onclick="init()">All Pokémon ></button>
     </div>
 
     <!-- Layer Pokemon -->
@@ -46,6 +49,13 @@
         Loading...
       </div>
     </div>
+
+    <!-- Layer ArrowUp -->
+    <div id="arrowUp" class="layer-transparent d-none">
+          <img class="arrow-up" src="./img/icons/arrowup.png" onclick="scrollToTop()" alt="">
+      </div>
+    
+    
   
 </body>
 </html>
