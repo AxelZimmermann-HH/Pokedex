@@ -16,6 +16,7 @@ let dataLoaded = false;
 
 
 
+
 async function init() {
   offset = 0;
   await fetchNextPokemons();

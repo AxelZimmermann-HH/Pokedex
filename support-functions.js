@@ -146,3 +146,11 @@ function showSearchError() {
         document.getElementById('search-error').classList.remove('bounce');
     }, 2000);
 }
+
+
+
+
+  
+  
+
+  

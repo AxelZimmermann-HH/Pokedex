@@ -41,37 +41,39 @@ function createCardHTML(i, pokemon, bgColor, detailedInfo, typesHTML, fromSearch
 
 function createLayerHTML(name, number, imageUrl, imageUrl2, height, weight, baseExperience, abilitiesHTML, bgColor, stat1, stat2, stat3, stat4, stat5, stat6, pokemonId) {  
   addDynamicPseudoClassStyle('.container2::before', `background-color: ${bgColor};`);
-  
-  return `
-  <div class="layer-container">  
-    <p id="previous" class="pokeName-layer" onclick="previousPokemon()"><</p>
-    <div class="innerLayer">
-      <div class="container1">
-        <div class="layer-header">
-          <p class="pokeName-layer">${name}</p>
-          
-          <div class="close-layer" onclick="closePokemonLayer()">
-            <img class="icon" src="./img/icons/xmark-white.svg" alt="">
+    return `
+    <div class="layer-container"> 
+          <div class="mobile-layer-container">
+                <div class="nav-arrows"> 
+                      <p id="previous" class="pokeName-layer" onclick="previousPokemon()"><</p>
+                      <p id="next" class="pokeName-layer" onclick="nextPokemon()">></p>
+                </div>
+                <div class="innerLayer">
+                      <div class="container1">
+                        <div class="layer-header">
+                          <p class="pokeName-layer">${name}</p>
+                          <div class="close-layer" onclick="closePokemonLayer()">
+                            <img class="icon" src="./img/icons/xmark-white.svg" alt="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="container2" style="background-color: ${bgColor};">
+                        <div class="layer-main-img">
+                          <img src="${imageUrl}" alt="${name}">
+                        </div>
+                        <div class="layer-number pokeName-layer">
+                          <p>#${number}</p>
+                        </div>
+                        <div class="navbar">
+                          <button class="button-nav" id="button1" onclick="showMainInfos('${height}', '${weight}', '${baseExperience}', '${abilitiesHTML}')">MAIN</button>
+                          <button class="button-nav" id="button2" onclick="showStats('${bgColor}', '${stat1}', '${stat2}', '${stat3}', '${stat4}', '${stat5}', '${stat6}')">STATS</button>
+                          <button class="button-nav" id="button3" onclick="showEvolutionImages(${pokemonId})">EVO CHAIN</button>
+                        </div>
+                        <div id="info-content"></div>
+                      </div>
+                </div>
           </div>
-        </div>
-      </div>
-      <div class="container2" style="background-color: ${bgColor};">
-        <div class="layer-main-img">
-          <img src="${imageUrl}" alt="${name}">
-        </div>
-        <div class="layer-number pokeName-layer">
-          <p>#${number}</p>
-        </div>
-        <div class="navbar">
-          <button class="button-nav" id="button1" onclick="showMainInfos('${height}', '${weight}', '${baseExperience}', '${abilitiesHTML}')">MAIN</button>
-          <button class="button-nav" id="button2" onclick="showStats('${bgColor}', '${stat1}', '${stat2}', '${stat3}', '${stat4}', '${stat5}', '${stat6}')">STATS</button>
-          <button class="button-nav" id="button3" onclick="showEvolutionImages(${pokemonId})">EVO CHAIN</button>
-        </div>
-        <div id="info-content"></div>
-      </div>
-    </div>
-    <p id="next" class="pokeName-layer" onclick="nextPokemon()">></p>
-  </div>  
+    </div>  
     `;
 }
   
@@ -129,7 +131,7 @@ function createEvolution(imageUrls, names) {
     imagesHtml += `
       <div class="evo-stage">
         <img src="${imageUrls[i]}" alt="Pokémon Evolution Stage ${i + 1}">
-        <div class="name">${names[i]}</div>
+        <p class="name">${names[i]}</p>
       </div>`;
     
     if (i < imageUrls.length - 1) {
