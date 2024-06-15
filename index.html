@@ -1,42 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <title>Pokedex</title>
-    
+
+    <title>Pokédex</title>
+
     <script src="data-requests.js"></script>
     <script src="main-functions.js"></script>
     <script src="support-functions.js"></script>
     <script src="return-HTML.js"></script>
-    
-    <link rel="stylesheet" href="style.css" />
 
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./img/ball.png" type="image/png">
   </head>
-  
+
   <body onload="init()">
-    
     <header>
       <div class="header-container">
         <img src="./img/logo.png" alt="" onclick="init()" />
-        
+
         <div class="search-area">
-            <div id="search-error" class="d-none">Please enter 3 letters at least!</div>
-          <input id="search" type="text" placeholder="Enter here..." onkeyup="checkSearch(event)" />
-          <button onclick="filterPokemons()" id="search-button">Find Pokémon</button>
+          <div id="search-error" class="d-none">
+            Please enter 3 letters at least!
+          </div>
+          <div class="input-button">
+          <input
+            id="search"
+            type="text"
+            placeholder="Enter here..."
+            onkeyup="checkSearch(event)"
+          />
+          <button onclick="filterPokemons()" id="search-button">
+            Find Pokémon
+          </button>
+        </div>
         </div>
       </div>
     </header>
-    
+
     <div class="all-pokemons-area">
       <div id="all-pokemons" class="container"></div>
     </div>
-    
+
     <div class="more-pokemons">
-      <button id="load-more" class="" onclick="loadMorePokemons()">Load more pokemon</button>
-      <button id="get-back" class="d-none" onclick="init()">All Pokémon ></button>
+      <button id="load-more" class="" onclick="loadMorePokemons()">
+        Load more Pokèmon
+      </button>
+      <button id="get-back" class="d-none" onclick="init()">
+        All Pokémon >
+      </button>
     </div>
 
     <!-- Layer Pokemon -->
@@ -52,10 +65,12 @@
 
     <!-- Layer ArrowUp -->
     <div id="arrowUp" class="layer-transparent d-none">
-          <img class="arrow-up" src="./img/icons/arrowup.png" onclick="scrollToTop()" alt="">
-      </div>
-    
-    
-  
-</body>
+      <img
+        class="arrow-up"
+        src="./img/icons/arrowup.png"
+        onclick="scrollToTop()"
+        alt=""
+      />
+    </div>
+  </body>
 </html>

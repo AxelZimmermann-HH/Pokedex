@@ -15,6 +15,7 @@ let allPokemonInfos = [];
 let dataLoaded = false;
 
 
+
 async function init() {
   offset = 0;
   await fetchNextPokemons();
@@ -74,7 +75,6 @@ function showPokemonLayer(i,name,number,imageUrl,imageUrl2,height,weight,
   if (fromSearch) {
     document.getElementById('previous').classList.add('d-none');
     document.getElementById('next').classList.add('d-none');
-    console.log("Dieses Pokémon stammt aus der Suche");
   }
 }
 
@@ -168,9 +168,6 @@ function nextPokemon() {
 
 
 
-
-
-
 function previousPokemon() {
   if (currentIndex > 0) {
     currentIndex--;
@@ -187,7 +184,6 @@ function previousPokemon() {
 
 async function loadMorePokemons() {
   offset += 50;
-  console.log(offset)
   await fetchNextPokemons(offset)
   await showPokemonCards(nextPokemons);
 }

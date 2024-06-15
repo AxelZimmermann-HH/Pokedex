@@ -7,11 +7,13 @@ async function fetchNextPokemons(offset) {
 }
 
 
+
 async function fetchPokemonDetails(url) {
   let response = await fetch(url);
   let detailedInfo = await response.json();
   return detailedInfo;
 }
+
 
 
 async function fetchPokemon(name) {
@@ -21,6 +23,7 @@ async function fetchPokemon(name) {
 }
 
 
+
 async function fetchEvoSpecies(id) {
   let response = await fetch(`${BASE_URL}pokemon-species/${id}`);
   let species = await response.json();
@@ -28,11 +31,13 @@ async function fetchEvoSpecies(id) {
 }
 
 
+
 async function fetchEvolutionChain(url) {
   let response = await fetch(url);
   let evolutionChain = await response.json();
   return evolutionChain;
 }
+
 
 
 async function fetchAllPokemonInfos() {
@@ -48,6 +53,7 @@ async function fetchAllPokemonInfos() {
   hideLoading();
   dataLoaded = true;
 }
+
 
 
 async function loadAllSites(url, limit) {
@@ -70,6 +76,7 @@ async function loadAllSites(url, limit) {
 
   return data;
 }
+
 
 
 async function loadLastSite(data) {

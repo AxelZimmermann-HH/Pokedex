@@ -14,6 +14,7 @@ function createCardHTML(i, pokemon, bgColor, detailedInfo, typesHTML, fromSearch
 
   let lighterColor = lightenDarkenColor(bgColor, 40);
   let darkerColor = lightenDarkenColor(bgColor, -40);
+
   
   return `
     <div class="pokemon-card" id="card${i}" onclick="showPokemonLayer(${i}, '${pokemon.name}', '${detailedInfo.id}',
